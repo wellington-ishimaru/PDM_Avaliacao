@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:pdm_flutter_wellington/routes/shipping_address_page.dart';
 
+import '../route_generator.dart';
 import 'home_page.dart';
 
 class FormPage extends StatefulWidget {
   const FormPage({Key? key}) : super(key: key);
-
   @override
   State<FormPage> createState() => _FormPageState();
 }
@@ -24,10 +24,8 @@ class _FormPageState extends State<FormPage> {
         backgroundColor: Color.fromARGB(1, 231, 234, 239),
         leading: IconButton(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const HomePage()),
-            );
+            Navigator.of(context)
+                .pushReplacementNamed(RouterGenerator.homePage);
           },
           icon: Image(
             width: 50,
@@ -55,11 +53,15 @@ class _FormPageState extends State<FormPage> {
           IconButton(
             icon: const Icon(Icons.shopping_bag),
             tooltip: 'Open shopping cart',
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context)
+                  .pushReplacementNamed(RouterGenerator.formPage);
+            },
           ),
         ],
       ),
-      body: Center(
+      body:
+      Center(
         child: SingleChildScrollView(
           child: Container(
             height: 650,
@@ -133,11 +135,8 @@ class _FormPageState extends State<FormPage> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ShippingAddressPage()),
-                    );
+                    Navigator.of(context)
+                        .pushReplacementNamed(RouterGenerator.shippingAddress);
                   },
                   child: Text('Adicionar!'),
                 ),

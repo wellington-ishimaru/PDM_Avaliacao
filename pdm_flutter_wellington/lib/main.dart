@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pdm_flutter_wellington/routes/blog_page.dart';
-import 'package:pdm_flutter_wellington/routes/form_page.dart';
+import 'package:pdm_flutter_wellington/model/addresscache.dart';
+import 'package:pdm_flutter_wellington/route_generator.dart';
 import 'package:pdm_flutter_wellington/routes/home_page.dart';
-import 'package:pdm_flutter_wellington/routes/shipping_address_page.dart';
+import 'package:provider/provider.dart';
 
 
 void main() {
@@ -15,10 +15,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'APP',
-      theme: ThemeData.light(),
-      home: HomePage(),
+    return
+      Provider<AddressCache>(
+        create: (_) => AddressCache(),
+        child: MaterialApp(
+        onGenerateTitle: (context) => "Open Fashion",
+          initialRoute: RouterGenerator.homePage,
+          onGenerateRoute: RouterGenerator.generateRoute,
+          debugShowCheckedModeBanner: false,
+        ),
       );
   }
 }

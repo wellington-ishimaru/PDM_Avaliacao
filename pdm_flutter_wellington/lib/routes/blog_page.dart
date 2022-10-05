@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pdm_flutter_wellington/routes/home_page.dart';
 
+import '../route_generator.dart';
+
 class BlogPage extends StatelessWidget {
   const BlogPage({Key? key}) : super(key: key);
 
@@ -11,10 +13,8 @@ class BlogPage extends StatelessWidget {
         backgroundColor: Color.fromARGB(1, 231, 234, 239),
         leading: IconButton(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const HomePage()),
-            );
+            Navigator.of(context)
+                .pushReplacementNamed(RouterGenerator.homePage);
           },
           icon: Image(
             width: 50,
@@ -42,7 +42,10 @@ class BlogPage extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.shopping_bag),
             tooltip: 'Open shopping cart',
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context)
+                  .pushReplacementNamed(RouterGenerator.formPage);
+            },
           ),
         ],
       ),
